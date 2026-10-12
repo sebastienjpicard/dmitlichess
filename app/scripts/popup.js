@@ -9,19 +9,18 @@ class PopupCtrl {
   generateMiscList = () => {
     const s = this.sounds[this.options.commentator];
     const soundFiles = [
-      ...s.misc,
-      ...s.check,
-      ...s.checkmate,
-      ...s.stalemate,
-      ...s.draw,
-      ...s.resign,
-      ...s.start,
-      ...s.name,
-      ...s.check,
-      ...s.fill,
-      ...s.long,
-      ...s.signoff
-    ].filter(n => !!n); // Remove undefined entries (if sounds don't exist for one category)
+      'misc',
+      'check',
+      'checkmate',
+      'stalemate',
+      'draw',
+      'resign',
+      'start',
+      'name',
+      'fill',
+      'long',
+      'signoff'
+    ].flatMap(key => s[key] || []); // Skip undefined entries (if sounds don't exist for one category)
 
     const soundboard = document.querySelector('#soundboard');
     const selectList = document.createElement('select');
